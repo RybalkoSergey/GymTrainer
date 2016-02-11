@@ -4,7 +4,8 @@ package com.sergeyry.gymtrainer.model;
 import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -39,6 +40,15 @@ public class User {
     @NotEmpty
     @Column(name = "EMAIL", nullable = false)
     private String email;
+
+    @Column(name="STATE", nullable=false)
+    private String state=State.ACTIVE.getState();
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "USER_ROLES",
+            joinColumns = { @JoinColumn(name = "USER_ID") },
+            inverseJoinColumns = { @JoinColumn(name = "ROLE_ID") })
+    private Set<Role> roles = new HashSet<Role>();
 
     public int getId() {
         return id;
@@ -86,6 +96,22 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Override

@@ -26,7 +26,7 @@ public class UserController {
 	@Autowired
 	MessageSource messageSource;
 
-	@RequestMapping(value = { "/", "/list" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/list" }, method = RequestMethod.GET)
 	public String listUsers(ModelMap model) {
 
 		List<User> users = service.findAllUsers();
