@@ -1,4 +1,4 @@
-package com.sergeyry.gymtrainer.model;
+package com.sergeyry.gymtrainer.model.user;
 
 import javax.persistence.*;
 

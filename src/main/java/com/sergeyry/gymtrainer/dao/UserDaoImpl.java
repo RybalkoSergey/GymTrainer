@@ -1,6 +1,6 @@
 package com.sergeyry.gymtrainer.dao;
 
-import com.sergeyry.gymtrainer.model.User;
+import com.sergeyry.gymtrainer.model.user.User;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;

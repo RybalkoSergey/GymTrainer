@@ -1,6 +1,6 @@
 package com.sergeyry.gymtrainer.dao;
 
-import com.sergeyry.gymtrainer.model.User;
+import com.sergeyry.gymtrainer.model.user.User;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.springframework.beans.factory.annotation.Autowired;

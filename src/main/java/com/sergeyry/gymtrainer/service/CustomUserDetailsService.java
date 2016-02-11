@@ -1,7 +1,7 @@
 package com.sergeyry.gymtrainer.service;
 
-import com.sergeyry.gymtrainer.model.Role;
-import com.sergeyry.gymtrainer.model.User;
+import com.sergeyry.gymtrainer.model.user.Role;
+import com.sergeyry.gymtrainer.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

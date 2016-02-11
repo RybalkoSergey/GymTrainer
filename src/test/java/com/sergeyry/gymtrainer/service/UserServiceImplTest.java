@@ -13,7 +13,7 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 
 import com.sergeyry.gymtrainer.dao.UserDao;
-import com.sergeyry.gymtrainer.model.User;
+import com.sergeyry.gymtrainer.model.user.User;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;

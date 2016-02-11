@@ -1,6 +1,6 @@
 package com.sergeyry.gymtrainer.service;
 
-import com.sergeyry.gymtrainer.model.User;
+import com.sergeyry.gymtrainer.model.user.User;
 
 import java.util.List;
 
