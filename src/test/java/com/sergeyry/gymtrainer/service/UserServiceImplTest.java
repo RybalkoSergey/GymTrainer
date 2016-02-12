@@ -12,8 +12,9 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 
-import com.sergeyry.gymtrainer.dao.UserDao;
+import com.sergeyry.gymtrainer.dao.user.UserDao;
 import com.sergeyry.gymtrainer.model.user.User;
+import com.sergeyry.gymtrainer.service.user.UserServiceImpl;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;

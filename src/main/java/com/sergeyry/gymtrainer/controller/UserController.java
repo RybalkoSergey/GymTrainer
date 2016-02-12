@@ -1,7 +1,7 @@
 package com.sergeyry.gymtrainer.controller;
 
 import com.sergeyry.gymtrainer.model.user.User;
-import com.sergeyry.gymtrainer.service.UserService;
+import com.sergeyry.gymtrainer.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;

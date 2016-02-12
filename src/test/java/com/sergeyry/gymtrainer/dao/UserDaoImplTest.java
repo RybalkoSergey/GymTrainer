@@ -1,5 +1,6 @@
 package com.sergeyry.gymtrainer.dao;
 
+import com.sergeyry.gymtrainer.dao.user.UserDao;
 import com.sergeyry.gymtrainer.model.user.User;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;

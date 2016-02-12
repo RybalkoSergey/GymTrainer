@@ -1,6 +1,6 @@
-package com.sergeyry.gymtrainer.service;
+package com.sergeyry.gymtrainer.service.user;
 
-import com.sergeyry.gymtrainer.dao.UserDao;
+import com.sergeyry.gymtrainer.dao.user.UserDao;
 import com.sergeyry.gymtrainer.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

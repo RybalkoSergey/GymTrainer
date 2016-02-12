@@ -1,4 +1,4 @@
-package com.sergeyry.gymtrainer.service;
+package com.sergeyry.gymtrainer.service.user;
 
 import com.sergeyry.gymtrainer.model.user.Role;
 import com.sergeyry.gymtrainer.model.user.User;

@@ -1,5 +1,6 @@
-package com.sergeyry.gymtrainer.dao;
+package com.sergeyry.gymtrainer.dao.user;
 
+import com.sergeyry.gymtrainer.dao.AbstractDao;
 import com.sergeyry.gymtrainer.model.user.User;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
