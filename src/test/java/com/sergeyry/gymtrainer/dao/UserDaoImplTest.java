@@ -29,33 +29,33 @@ public class UserDaoImplTest extends EntityDaoImplTest{
 	
 	@Test
 	public void saveUser(){
-		userDao.saveUser(getUser());
-		Assert.assertEquals(userDao.findAllUsers().size(), 3);
+		userDao.save(getUser());
+		Assert.assertEquals(userDao.findAll().size(), 3);
 	}
 	
 	@Test
 	public void deleteUserByLogin(){
-		userDao.deleteUserByLogin("Alex");
-		Assert.assertEquals(userDao.findAllUsers().size(), 2);
-		Assert.assertNull(userDao.findUserByLogin("Alex"));
+		userDao.deleteByLogin("Alex");
+		Assert.assertEquals(userDao.findAll().size(), 2);
+		Assert.assertNull(userDao.findByLogin("Alex"));
 
 	}
 	
 	@Test
 	public void deleteUserByInvalidLogin(){
-		userDao.deleteUserByLogin("Vitia");
-		Assert.assertEquals(userDao.findAllUsers().size(), 2);
+		userDao.deleteByLogin("Vitia");
+		Assert.assertEquals(userDao.findAll().size(), 2);
 	}
 
 	@Test
 	public void findAllEmployees(){
-		Assert.assertEquals(userDao.findAllUsers().size(), 2);
+		Assert.assertEquals(userDao.findAll().size(), 2);
 	}
 	
 	@Test
 	public void findEmployeeByLogin(){
-		Assert.assertNotNull(userDao.findUserByLogin("Sergey"));
-		Assert.assertNull(userDao.findUserByLogin("SergeyRybalko"));
+		Assert.assertNotNull(userDao.findByLogin("Sergey"));
+		Assert.assertNull(userDao.findByLogin("SergeyRybalko"));
 	}
 
 	public User getUser(){

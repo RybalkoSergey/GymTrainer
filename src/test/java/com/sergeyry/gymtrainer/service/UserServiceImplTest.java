@@ -49,43 +49,43 @@ public class UserServiceImplTest {
 
 	@Test
 	public void saveEmployee(){
-		doNothing().when(dao).saveUser(any(User.class));
-		userService.saveUser(any(User.class));
-        verify(dao, atLeastOnce()).saveUser(any(User.class));
+		doNothing().when(dao).save(any(User.class));
+		userService.save(any(User.class));
+        verify(dao, atLeastOnce()).save(any(User.class));
     }
 	
 	@Test
 	public void updateEmployee(){
         User user = users.get(0);
 		when(dao.findById(anyInt())).thenReturn(user);
-		userService.updateUser(user);
+		userService.update(user);
 		verify(dao, atLeastOnce()).findById(anyInt());
 	}
 
 	@Test
 	public void deleteUserByLogin(){
-		doNothing().when(dao).deleteUserByLogin(anyString());
-		userService.deleteUserByLogin(anyString());
-		verify(dao, atLeastOnce()).deleteUserByLogin(anyString());
+		doNothing().when(dao).deleteByLogin(anyString());
+		userService.deleteByLogin(anyString());
+		verify(dao, atLeastOnce()).deleteByLogin(anyString());
 	}
 	
 	@Test
 	public void findAllUsers(){
-		when(dao.findAllUsers()).thenReturn(users);
-		Assert.assertEquals(userService.findAllUsers(), users);
+		when(dao.findAll()).thenReturn(users);
+		Assert.assertEquals(userService.findAll(), users);
 	}
 	
 	@Test
 	public void findUserByLogin(){
 		User user = users.get(0);
-		when(dao.findUserByLogin(anyString())).thenReturn(user);
-		Assert.assertEquals(userService.findUserByLogin(anyString()), user);
+		when(dao.findByLogin(anyString())).thenReturn(user);
+		Assert.assertEquals(userService.findByLogin(anyString()), user);
 	}
 
 	@Test
 	public void isUserLoginUnique(){
 		User user = users.get(0);
-		when(dao.findUserByLogin(anyString())).thenReturn(user);
+		when(dao.findByLogin(anyString())).thenReturn(user);
 		Assert.assertEquals(userService.isUserLoginUnique(user.getLogin()), false);
 	}
 	

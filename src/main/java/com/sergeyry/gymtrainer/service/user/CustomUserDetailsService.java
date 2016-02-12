@@ -23,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 	@Transactional(readOnly=true)
 	public UserDetails loadUserByUsername(String login)	throws UsernameNotFoundException {
 
-		User user = userService.findUserByLogin(login);
+		User user = userService.findByLogin(login);
 
 		System.out.println("User : "+user);
 		if(user==null){

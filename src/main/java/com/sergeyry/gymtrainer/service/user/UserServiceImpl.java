@@ -19,11 +19,11 @@ public class UserServiceImpl implements UserService {
         return userDao.findById(id);
     }
 
-    public void saveUser(User user) {
-        userDao.saveUser(user);
+    public void save(User user) {
+        userDao.save(user);
     }
 
-    public void updateUser(User user) {
+    public void update(User user) {
         User entity = userDao.findById(user.getId());
         if(entity!=null){
             entity.setFirstName(user.getFirstName());
@@ -32,20 +32,20 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    public void deleteUserByLogin(String login) {
-        userDao.deleteUserByLogin(login);
+    public void deleteByLogin(String login) {
+        userDao.deleteByLogin(login);
     }
 
-    public List<User> findAllUsers() {
-        return userDao.findAllUsers();
+    public List<User> findAll() {
+        return userDao.findAll();
     }
 
-    public User findUserByLogin(String login) {
-        return userDao.findUserByLogin(login);
+    public User findByLogin(String login) {
+        return userDao.findByLogin(login);
     }
 
     public boolean isUserLoginUnique(String login) {
-        User user = findUserByLogin(login);
+        User user = findByLogin(login);
         return user == null;
     }
 }

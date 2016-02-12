@@ -9,15 +9,15 @@ public interface UserService {
 
     User findById(int id);
 
-    void saveUser(User user);
+    void save(User user);
 
-    void updateUser(User user);
+    void update(User user);
 
-    void deleteUserByLogin(String login);
+    void deleteByLogin(String login);
 
-    List<User> findAllUsers();
+    List<User> findAll();
 
-    User findUserByLogin(String login);
+    User findByLogin(String login);
 
     boolean isUserLoginUnique(String login);
 }

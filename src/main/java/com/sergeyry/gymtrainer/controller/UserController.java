@@ -29,7 +29,7 @@ public class UserController {
 	@RequestMapping(value = { "/list" }, method = RequestMethod.GET)
 	public String listUsers(ModelMap model) {
 
-		List<User> users = service.findAllUsers();
+		List<User> users = service.findAll();
 		model.addAttribute("users", users);
 		return "users";
 	}
@@ -56,7 +56,7 @@ public class UserController {
 			return "registration";
 		}
 		
-		service.saveUser(user);
+		service.save(user);
 
 		model.addAttribute("success", "Employee " + user.getFirstName() + " registered successfully");
 		return "success";
@@ -64,7 +64,7 @@ public class UserController {
 
 	@RequestMapping(value = { "/edit-{login}-employee" }, method = RequestMethod.GET)
 	public String editUser(@PathVariable String login, ModelMap model) {
-		User employee = service.findUserByLogin(login);
+		User employee = service.findByLogin(login);
 		model.addAttribute("employee", employee);
 		model.addAttribute("edit", true);
 		return "registration";
@@ -84,7 +84,7 @@ public class UserController {
 			return "registration";
 		}
 
-		service.updateUser(user);
+		service.update(user);
 
 		model.addAttribute("success", "Employee " + user.getFirstName() + " updated successfully");
 		return "success";
@@ -92,7 +92,7 @@ public class UserController {
 
 	@RequestMapping(value = { "/delete-{ssn}-employee" }, method = RequestMethod.GET)
 	public String deleteUser(@PathVariable String login) {
-		service.deleteUserByLogin(login);
+		service.deleteByLogin(login);
 		return "redirect:/list";
 	}
 }
