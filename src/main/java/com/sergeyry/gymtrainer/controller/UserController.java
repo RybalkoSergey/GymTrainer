@@ -1,16 +1,20 @@
 package com.sergeyry.gymtrainer.controller;
 
+import com.sergeyry.gymtrainer.model.program.Program;
 import com.sergeyry.gymtrainer.model.user.User;
+import com.sergeyry.gymtrainer.service.program.ProgramService;
 import com.sergeyry.gymtrainer.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -21,78 +25,69 @@ import java.util.Locale;
 public class UserController {
 
 	@Autowired
-	UserService service;
-	
+	UserService userService;
+
+	@Autowired
+	ProgramService programService;
+
 	@Autowired
 	MessageSource messageSource;
 
-	@RequestMapping(value = { "/list" }, method = RequestMethod.GET)
-	public String listUsers(ModelMap model) {
-
-		List<User> users = service.findAll();
-		model.addAttribute("users", users);
-		return "users";
+	@RequestMapping(value = "/user/", method = RequestMethod.GET)
+	public ResponseEntity<List<User>> listAllUsers() {
+		List<User> users = userService.findAll();
+		if(users.isEmpty()){
+			return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = { "/new" }, method = RequestMethod.GET)
-	public String newUser(ModelMap model) {
-		User user = new User();
-		model.addAttribute("user", user);
-		model.addAttribute("edit", false);
-		return "registration";
-	}
-
-	@RequestMapping(value = { "/new" }, method = RequestMethod.POST)
-	public String saveUser(@Valid User user, BindingResult result,
-			ModelMap model) {
-
-		if (result.hasErrors()) {
-			return "registration";
+	@RequestMapping(value = "/user/", method = RequestMethod.POST)
+	public ResponseEntity<Void> createUser(@RequestBody User user) {
+		if (!userService.isUserLoginUnique(user.getLogin())) {
+			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 		}
 
-		if(!service.isUserLoginUnique(user.getLogin())){
-			FieldError loginError =new FieldError("user","login",messageSource.getMessage("non.unique.login", new String[]{user.getLogin()}, Locale.getDefault()));
-		    result.addError(loginError);
-			return "registration";
-		}
-		
-		service.save(user);
-
-		model.addAttribute("success", "Employee " + user.getFirstName() + " registered successfully");
-		return "success";
+		userService.save(user);
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = { "/edit-{login}-employee" }, method = RequestMethod.GET)
-	public String editUser(@PathVariable String login, ModelMap model) {
-		User employee = service.findByLogin(login);
-		model.addAttribute("employee", employee);
-		model.addAttribute("edit", true);
-		return "registration";
-	}
-	
-	@RequestMapping(value = { "/edit-{ssn}-employee" }, method = RequestMethod.POST)
-	public String updateUser(@Valid User user, BindingResult result,
-			ModelMap model, @PathVariable String ssn) {
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable int id) {
+		User currentUser = userService.findById(id);
 
-		if (result.hasErrors()) {
-			return "registration";
+		if (currentUser==null) {
+			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 		}
 
-		if(!service.isUserLoginUnique(user.getLogin())){
-			FieldError loginError =new FieldError("employee","ssn",messageSource.getMessage("non.unique.login", new String[]{user.getLogin()}, Locale.getDefault()));
-		    result.addError(loginError);
-			return "registration";
-		}
+		currentUser.setLogin(user.getLogin());
+		currentUser.setFirstName(user.getFirstName());
+		currentUser.setLastName(user.getLastName());
+		currentUser.setPassword(user.getPassword());
+		currentUser.setEmail(user.getEmail());
+		currentUser.setState(user.getState());
 
-		service.update(user);
-
-		model.addAttribute("success", "Employee " + user.getFirstName() + " updated successfully");
-		return "success";
+		userService.update(currentUser);
+		return new ResponseEntity<User>(currentUser, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = { "/delete-{ssn}-employee" }, method = RequestMethod.GET)
-	public String deleteUser(@PathVariable String login) {
-		service.deleteByLogin(login);
-		return "redirect:/list";
+	@RequestMapping(value = { "/user/{id}" }, method = RequestMethod.GET)
+	public ResponseEntity<User> deleteUser(@PathVariable int id) {
+		User user = userService.findById(id);
+		if (user == null) {
+			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+		}
+		userService.deleteById(id);
+		return new ResponseEntity<User>(HttpStatus.OK);
+	}
+
+	@RequestMapping(value = { "/user/{id}/program" }, method = RequestMethod.GET)
+	public ResponseEntity<List<Program>> getSignedPrograms(@PathVariable int id) {
+		List<Program> programs = programService.findByUserId(id);
+
+		if (programs.isEmpty()) {
+			return new ResponseEntity<List<Program>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Program>>(programs, HttpStatus.OK);
 	}
 }

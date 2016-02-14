@@ -1,5 +1,6 @@
 package com.sergeyry.gymtrainer.service.user;
 
+import com.sergeyry.gymtrainer.model.program.Program;
 import com.sergeyry.gymtrainer.model.user.User;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public interface UserService {
     void update(User user);
 
     void deleteByLogin(String login);
+
+    void deleteById(int id);
 
     List<User> findAll();
 

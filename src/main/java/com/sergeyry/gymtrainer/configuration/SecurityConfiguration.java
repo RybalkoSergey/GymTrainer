@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 import javax.sql.DataSource;
 
@@ -32,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	  http.authorizeRequests()
 	  	.antMatchers("/admin/**").access("hasRole('ADMIN')")
 	  	.antMatchers("/home/**").authenticated()
-		.and().formLogin().loginPage("/login").defaultSuccessUrl("/home")
+		.and().formLogin().loginPage("/login").defaultSuccessUrl("/index")
 		.usernameParameter("login").passwordParameter("password")
 	  	.and().csrf()
 	  	.and().exceptionHandling().accessDeniedPage("/Access_Denied");

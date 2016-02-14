@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+	<div class="panel-heading"><span class="lead">Program</span></div>
+	<div class="tablecontainer">
+		<table class="table table-hover">
+			<thead>
+			<tr>
+				<th>Day of week</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Amount of set</th>
+				<th>Amount of iteration</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="exercise in exercises">
+				<td>{{exercise[0].day.name}}</td>
+				<td><a ui-sref="exercises({programId: program.id})">{{exercise[0].exercise.name}}</a></td>
+				<td>{{exercise[0].exercise.description}}</td>
+				<td>{{exercise[0].exercise.amountOfSet}}</td>
+				<td>{{exercise[0].exercise.amountOfIteration}}</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

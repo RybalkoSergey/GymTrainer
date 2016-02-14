@@ -17,12 +17,10 @@ public class Program {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Size(min=5, max=45)
     @NotEmpty
     @Column(name = "NAME", nullable = false)
     private String name;
 
-    @Size(min=5, max=45)
     @NotEmpty
     @Column(name = "DESCRIPTION", nullable = false)
     private String description;
@@ -31,12 +29,9 @@ public class Program {
     @JoinColumn(name="COMPLEXITY_TYPE_ID")
     private ComplexityType complexityType;
 
-    @JoinTable(name = "PROGRAM_DAYS_EXERCISES",
-            joinColumns = @JoinColumn(name = "PROGRAM_ID"),
-            inverseJoinColumns = @JoinColumn(name = "EXERCISE_ID"))
-    @MapKeyJoinColumn(name = "DAY_ID")
-    @ElementCollection
-    private Map<Day, Exercise> exercises = new HashMap<Day, Exercise>();
+    @NotEmpty
+    @Column(name = "IS_ARCHIVE", nullable = false)
+    private boolean isArchive;
 
     public int getId() {
         return id;
@@ -68,6 +63,14 @@ public class Program {
 
     public void setComplexityType(ComplexityType complexityType) {
         this.complexityType = complexityType;
+    }
+
+    public boolean isArchive() {
+        return isArchive;
+    }
+
+    public void setIsArchive(boolean isArchive) {
+        this.isArchive = isArchive;
     }
 
     @Override

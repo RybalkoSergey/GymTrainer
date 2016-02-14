@@ -1,6 +1,7 @@
 package com.sergeyry.gymtrainer.dao.user;
 
 import com.sergeyry.gymtrainer.dao.AbstractDao;
+import com.sergeyry.gymtrainer.model.program.Program;
 import com.sergeyry.gymtrainer.model.user.User;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -35,5 +36,11 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         Criteria criteria = createEntityCriteria();
         criteria.add(Restrictions.eq("login", login));
         return (User) criteria.uniqueResult();
+    }
+
+    public void deleteById(int id) {
+        Query query = getSession().createSQLQuery("delete from USERS where ID = :id");
+        query.setInteger("id", id);
+        query.executeUpdate();
     }
 }

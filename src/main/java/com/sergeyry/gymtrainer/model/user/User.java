@@ -16,27 +16,22 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Size(min=3, max=45)
     @NotEmpty
     @Column(name = "LOGIN", nullable = false)
     private String login;
 
-    @Size(min=3, max=45)
     @NotEmpty
     @Column(name = "FIRST_NAME", nullable = false)
     private String firstName;
 
-    @Size(min=3, max=45)
     @NotEmpty
     @Column(name = "LAST_NAME", nullable = false)
     private String lastName;
 
-    @Size(min=5, max=45)
     @NotEmpty
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
-    @Size(min=5, max=45)
     @NotEmpty
     @Column(name = "EMAIL", nullable = false)
     private String email;
