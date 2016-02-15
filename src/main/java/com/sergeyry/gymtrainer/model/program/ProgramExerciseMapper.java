@@ -8,16 +8,17 @@ import java.io.Serializable;
 public class ProgramExerciseMapper implements Serializable {
 
     @Id
+    @Column(name="ID")
+    private int id;
+
     @OneToOne
     @JoinColumn(name="PROGRAM_ID")
     private Program program;
 
-    @Id
     @OneToOne
     @JoinColumn(name="DAY_ID")
     private Day day;
 
-    @Id
     @OneToOne
     @JoinColumn(name="EXERCISE_ID")
     private Exercise exercise;

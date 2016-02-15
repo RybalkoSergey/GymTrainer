@@ -2,6 +2,7 @@ package com.sergeyry.gymtrainer.dao;
 
 import com.sergeyry.gymtrainer.dao.program.ProgramDao;
 import com.sergeyry.gymtrainer.model.program.Program;
+import com.sergeyry.gymtrainer.model.program.ProgramExerciseMapper;
 import org.dbunit.dataset.CompositeDataSet;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
@@ -24,7 +25,8 @@ public class ProgramDaoImplTest extends EntityDaoImplTest {
       IDataSet[] datasets = new IDataSet[] {
               new FlatXmlDataSet(this.getClass().getClassLoader().getResourceAsStream("programs.xml")),
               new FlatXmlDataSet(this.getClass().getClassLoader().getResourceAsStream("users.xml")),
-              new FlatXmlDataSet(this.getClass().getClassLoader().getResourceAsStream("user_programs.xml"))
+              new FlatXmlDataSet(this.getClass().getClassLoader().getResourceAsStream("user_programs.xml")),
+              new FlatXmlDataSet(this.getClass().getClassLoader().getResourceAsStream("program_exercises.xml"))
 
       };
       return new CompositeDataSet(datasets);
@@ -52,5 +54,14 @@ public class ProgramDaoImplTest extends EntityDaoImplTest {
 
         Assert.assertEquals(programList1.size(), 3);
         Assert.assertEquals(programList2.size(), 0);
+    }
+
+    @Test
+    public void findExersicesByProgramId() {
+        List<ProgramExerciseMapper> exercises1 = programDao.findExersicesByProgramId(1);
+        List<ProgramExerciseMapper> exercises2 = programDao.findExersicesByProgramId(2);
+
+        Assert.assertEquals(exercises1.size(), 3);
+        Assert.assertEquals(exercises2.size(), 3);
     }
 }

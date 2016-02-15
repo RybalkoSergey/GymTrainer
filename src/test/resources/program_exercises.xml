@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<days ID="1" NAME="Monday"></days>
+	<days ID="2" NAME="Tuesday"></days>
+	<days ID="3" NAME="Wednesday"></days>
+	<days ID="4" NAME="Thursday"></days>
+	<days ID="5" NAME="Friday"></days>
+	<days ID="6" NAME="Saturday"></days>
+	<days ID="7" NAME="Sunday"></days>
+
+	<exercises ID="1" NAME="Exercise1" DESCRIPTION="Description for Exercise1" AMOUNT_OF_SET="4" AMOUNT_OF_ITERATION="10"></exercises>
+	<exercises ID="2" NAME="Exercise1" DESCRIPTION="Description for Exercise1" AMOUNT_OF_SET="4" AMOUNT_OF_ITERATION="10"></exercises>
+	<exercises ID="3" NAME="Exercise1" DESCRIPTION="Description for Exercise1" AMOUNT_OF_SET="4" AMOUNT_OF_ITERATION="10"></exercises>
+	<exercises ID="4" NAME="Exercise1" DESCRIPTION="Description for Exercise1" AMOUNT_OF_SET="4" AMOUNT_OF_ITERATION="10"></exercises>
+	<exercises ID="5" NAME="Exercise1" DESCRIPTION="Description for Exercise1" AMOUNT_OF_SET="4" AMOUNT_OF_ITERATION="10"></exercises>
+	<exercises ID="6" NAME="Exercise1" DESCRIPTION="Description for Exercise1" AMOUNT_OF_SET="4" AMOUNT_OF_ITERATION="10"></exercises>
+
+	<program_exercises ID="1" PROGRAM_ID="1" DAY_ID="1" EXERCISE_ID="1"></program_exercises>
+	<program_exercises ID="2" PROGRAM_ID="1" DAY_ID="2" EXERCISE_ID="2"></program_exercises>
+	<program_exercises ID="3" PROGRAM_ID="1" DAY_ID="3" EXERCISE_ID="3"></program_exercises>
+	<program_exercises ID="4" PROGRAM_ID="2" DAY_ID="1" EXERCISE_ID="4"></program_exercises>
+	<program_exercises ID="5" PROGRAM_ID="2" DAY_ID="2" EXERCISE_ID="5"></program_exercises>
+	<program_exercises ID="6" PROGRAM_ID="2" DAY_ID="3" EXERCISE_ID="6"></program_exercises>
+
+</dataset>
