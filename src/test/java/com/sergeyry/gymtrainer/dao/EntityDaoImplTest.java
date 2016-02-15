@@ -2,6 +2,8 @@ package com.sergeyry.gymtrainer.dao;
 
 import javax.sql.DataSource;
 
+import com.sergeyry.gymtrainer.configuration.DataTypeFactory;
+import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseDataSourceConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
@@ -24,6 +26,11 @@ public abstract class EntityDaoImplTest extends AbstractTransactionalTestNGSprin
 	public void setUp() throws Exception {
 		IDatabaseConnection dbConn = new DatabaseDataSourceConnection(
 				dataSource);
+
+		DatabaseConfig config = dbConn.getConfig();
+		config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY,
+				new DataTypeFactory());
+
 		DatabaseOperation.CLEAN_INSERT.execute(dbConn, getDataSet());
 	}
 	

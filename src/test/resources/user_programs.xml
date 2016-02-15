@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<user_programs USER_ID="1"	PROGRAM_ID="1"/>
+	<user_programs USER_ID="1"	PROGRAM_ID="2"/>
+	<user_programs USER_ID="2"	PROGRAM_ID="1"/>
+</dataset>

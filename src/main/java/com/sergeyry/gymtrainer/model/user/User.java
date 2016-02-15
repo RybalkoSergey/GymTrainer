@@ -1,6 +1,7 @@
 package com.sergeyry.gymtrainer.model.user;
 
 
+import com.sergeyry.gymtrainer.model.program.Program;
 import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -44,6 +45,12 @@ public class User {
             joinColumns = { @JoinColumn(name = "USER_ID") },
             inverseJoinColumns = { @JoinColumn(name = "ROLE_ID") })
     private Set<Role> roles = new HashSet<Role>();
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "USER_PROGRAMS",
+            joinColumns = { @JoinColumn(name = "USER_ID") },
+            inverseJoinColumns = { @JoinColumn(name = "PROGRAM_ID") })
+    private Set<Program> programs;
 
     public int getId() {
         return id;
@@ -107,6 +114,14 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Set<Program> getPrograms() {
+        return programs;
+    }
+
+    public void setPrograms(Set<Program> programs) {
+        this.programs = programs;
     }
 
     @Override

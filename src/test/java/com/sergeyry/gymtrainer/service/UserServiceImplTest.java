@@ -48,14 +48,14 @@ public class UserServiceImplTest {
 	}
 
 	@Test
-	public void saveEmployee(){
+	public void saveUser(){
 		doNothing().when(dao).save(any(User.class));
 		userService.save(any(User.class));
         verify(dao, atLeastOnce()).save(any(User.class));
     }
 	
 	@Test
-	public void updateEmployee(){
+	public void updateUser(){
         User user = users.get(0);
 		when(dao.findById(anyInt())).thenReturn(user);
 		userService.update(user);

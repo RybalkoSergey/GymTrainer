@@ -1,12 +1,8 @@
 package com.sergeyry.gymtrainer.model.program;
 
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+
 
 
 @Entity
@@ -17,19 +13,16 @@ public class Program {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotEmpty
     @Column(name = "NAME", nullable = false)
     private String name;
 
-    @NotEmpty
     @Column(name = "DESCRIPTION", nullable = false)
     private String description;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="COMPLEXITY_TYPE_ID")
     private ComplexityType complexityType;
 
-    @NotEmpty
     @Column(name = "IS_ARCHIVE", nullable = false)
     private boolean isArchive;
 
@@ -65,11 +58,11 @@ public class Program {
         this.complexityType = complexityType;
     }
 
-    public boolean isArchive() {
+    public Boolean isArchive() {
         return isArchive;
     }
 
-    public void setIsArchive(boolean isArchive) {
+    public void setIsArchive(Boolean isArchive) {
         this.isArchive = isArchive;
     }
 

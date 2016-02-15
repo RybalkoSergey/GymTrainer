@@ -48,12 +48,12 @@ public class UserDaoImplTest extends EntityDaoImplTest{
 	}
 
 	@Test
-	public void findAllEmployees(){
+	public void findAllUsers(){
 		Assert.assertEquals(userDao.findAll().size(), 2);
 	}
 	
 	@Test
-	public void findEmployeeByLogin(){
+	public void findUserByLogin(){
 		Assert.assertNotNull(userDao.findByLogin("Sergey"));
 		Assert.assertNull(userDao.findByLogin("SergeyRybalko"));
 	}
