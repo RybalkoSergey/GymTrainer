@@ -48,7 +48,7 @@ public class ProgramDaoImplTest extends EntityDaoImplTest {
     @Test
     public void findByComplexityType(){
         List<Program> programList1 = programDao.findByComplexityType(1);
-        List<Program> programList2 = programDao.findByUserId(2);
+        List<Program> programList2 = programDao.findByComplexityType(2);
 
         Assert.assertEquals(programList1.size(), 3);
         Assert.assertEquals(programList2.size(), 0);
